@@ -7,8 +7,8 @@ public class WinningNumbersValidator implements Validator {
     @Override
     public boolean validate(String input) {
         List<String> inputList = StringtoList(input);
-        validateInteger(inputList);
         validateSize(inputList);
+        validateInteger(inputList);
         return true;
     }
 
@@ -20,7 +20,7 @@ public class WinningNumbersValidator implements Validator {
     void validateInteger(List<String> numbersList){
         boolean isDigit = numbersList.stream()
                 .anyMatch(n -> n.matches("\\d+"));
-        if(!isDigit){
+        if(isDigit){
             Validator.throwError("당첨 번호가 숫자가 아닙니다");
         }
     }
