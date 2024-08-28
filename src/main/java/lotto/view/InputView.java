@@ -20,7 +20,7 @@ public class InputView {
         String price = "";
         do{
             price = readLine();
-        }while (priceValidator.validate(price));
+        }while (!priceValidator.validate(price));
         return price;
     }
 
@@ -28,11 +28,15 @@ public class InputView {
         String winningNumbers = "";
         do{
             winningNumbers = readLine();
-        }while (winningNumberValidator.validate(winningNumbers));
+        }while (!winningNumberValidator.validate(winningNumbers));
         return winningNumbers;
     }
 
     public String inputBonusNumber(){
-
+        String bonusNumber = "";
+        do{
+            bonusNumber = readLine();
+        }while (!bonusNumberValidator.validate(bonusNumber));
+        return bonusNumber;
     }
 }
