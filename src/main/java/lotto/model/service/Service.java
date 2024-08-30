@@ -19,7 +19,6 @@ public class Service {
 
     List<Lotto> lotteries = new ArrayList<>();
     List<Integer> lottoNumbers = new ArrayList<>();
-    List<Integer> winningNumbersList = new ArrayList<>();
     List<Integer> temp = new ArrayList<>();
     int[] correspondCount = new int[5];
     Long profit = 0L;
@@ -27,7 +26,6 @@ public class Service {
     public final WinningNumbers winningNumbers = new WinningNumbers(new WinningNumberInputView(new WinningNumbersValidator()));
     public final BonusNumber bonusNumber = new BonusNumber(new BonusNumberInputView(new BonusNumberValidator()));
     public final Price price = new Price(new PriceNumberInputView(new PriceValidator()));
-
 
     public int getCount(){
         return price.getPrice() / 1000;
@@ -50,14 +48,14 @@ public class Service {
     }
 
     public void getWinningNumbers(){
-         winningNumbersList = winningNumbers.createWinningNumber();
+         winningNumbers.createWinningNumber();
     }
 
     public void getBonusNumber(){
         boolean isValid = false;
         while(!isValid){
             int number = bonusNumber.createBonusNumber();
-            isValid = handleDuplicateBonusNumberValidation(number, winningNumbersList);
+            isValid = handleDuplicateBonusNumberValidation(number, winningNumbers.getWinningNumberList());
         }
     }
 
@@ -80,7 +78,7 @@ public class Service {
     }
 
     public void correspondWithLotto(){
-        List<Integer> wN = winningNumbersList;
+        List<Integer> wN = winningNumbers.getWinningNumberList();
         int bN = bonusNumber.getNumber();
         for(int i = 0; i < getCount(); i++){
             Lotto lotto = lotteries.get(i);
