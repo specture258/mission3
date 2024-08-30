@@ -27,7 +27,7 @@ public class PriceValidator implements Validator {
 
     void validateCorrectPrice(String value) throws IllegalArgumentException {
         if(Integer.parseInt(value) % 1000 != 0){
-            lotto.model.Validator.throwError("로또의 개수가 정수가 아닙니다");
+            Validator.throwError("로또의 개수가 정수가 아닙니다");
         }
     }
 
