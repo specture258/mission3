@@ -10,11 +10,11 @@ public class OutputView {
 
     public void viewLottoCount(Service service){
         System.out.println();
-        System.out.println(service.getCount()+ "개를 구매했습니다.");
+        System.out.println(service.getLottoCount()+ "개를 구매했습니다.");
     }
 
     public void viewLotteries(Lotto lotto){
-        System.out.println(lotto.lottoList());
+        System.out.println(lotto.getNumbers());
     }
 
     public void viewWinningNumbers(){

@@ -18,16 +18,13 @@ import java.util.stream.Collectors;
 public class Service {
 
     List<Lotto> lotteries = new ArrayList<>();
-    List<Integer> lottoNumbers = new ArrayList<>();
-    List<Integer> temp = new ArrayList<>();
     int[] correspondCount = new int[5];
-
 
     public final WinningNumbers winningNumbers = new WinningNumbers(new WinningNumberInputView(new WinningNumbersValidator()));
     public final BonusNumber bonusNumber = new BonusNumber(new BonusNumberInputView(new BonusNumberValidator()));
     public final Price price = new Price(new PriceNumberInputView(new PriceValidator()));
 
-    public int getCount(){
+    public int getLottoCount(){
         return price.getPrice() / 1000;
     }
 
@@ -36,7 +33,8 @@ public class Service {
     }
 
     public List<Lotto> createLotteries(){
-        for(int i = 0; i < getCount(); i++){
+        List<Integer> lottoNumbers;
+        for(int i = 0; i < getLottoCount(); i++){
             lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
             List<Integer> sortedLotto = lottoNumbers.stream()
                     .sorted()
@@ -80,15 +78,14 @@ public class Service {
     public void correspondWithLotto(){
         List<Integer> wN = winningNumbers.getWinningNumberList();
         int bN = bonusNumber.getNumber();
-        for(int i = 0; i < getCount(); i++){
+        for(int i = 0; i < getLottoCount(); i++){
             Lotto lotto = lotteries.get(i);
-            temp = lotto.lottoList();
-            Set<Integer> integerList = temp.stream()
+            Set<Integer> integerList = lotto.getNumbers().stream()
                     .filter(wN::contains)
                     .collect(Collectors.toSet());
             int size = integerList.size();
             if(size==5){
-                if(temp.contains(bN)){
+                if(lotto.getNumbers().contains(bN)){
                     //2등
                     correspondCount[3]++;
                 }
