@@ -16,13 +16,13 @@ public class WinningNumbersValidator implements Validator {
         return List.of(numbers);
     }
 
-    void validateSize(List<String> numbersList) throws IllegalArgumentException{
+    private void validateSize(List<String> numbersList) throws IllegalArgumentException{
         if(numbersList.size() != 6){
             Validator.throwError("당첨 번호의 개수가 잘못되었습니다");
         }
     }
 
-    void validateInteger(List<String> numbersList) throws IllegalArgumentException{
+    private void validateInteger(List<String> numbersList) throws IllegalArgumentException{
         for(String number : numbersList){
             if(!Character.isDigit(number.charAt(0))){
                 Validator.throwError("당첨 번호가 숫자가 아닙니다");
@@ -30,7 +30,7 @@ public class WinningNumbersValidator implements Validator {
         }
     }
 
-    void validateRange(List<String> numbersList) throws IllegalArgumentException{
+    private void validateRange(List<String> numbersList) throws IllegalArgumentException{
         List<Integer> integerList = numbersList.stream()
                 .map(Integer::parseInt)
                 .toList();

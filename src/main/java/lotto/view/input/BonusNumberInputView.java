@@ -22,7 +22,7 @@ public class BonusNumberInputView {
         return bonusNumber;
     }
 
-    public boolean handleInputBonusValidation(String bonusNumber){
+    private boolean handleInputBonusValidation(String bonusNumber){
         try{
             bonusNumberValidator.validate(bonusNumber);
             return true;

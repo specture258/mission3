@@ -7,7 +7,7 @@ public class BonusNumberValidator implements Validator {
         validateBlank(input);
     }
 
-    void validateInteger(String value) throws IllegalArgumentException{
+    private void validateInteger(String value) throws IllegalArgumentException{
         boolean isDigit = value.chars()
                 .allMatch(Character::isDigit);
         if(!isDigit){
@@ -15,7 +15,7 @@ public class BonusNumberValidator implements Validator {
         }
     }
 
-    void validateBlank(String value) throws IllegalArgumentException{
+    private void validateBlank(String value) throws IllegalArgumentException{
         final String BLANK = "";
         if(BLANK.equals(value.trim())){
             Validator.throwError("보너스 번호가 없습니다");

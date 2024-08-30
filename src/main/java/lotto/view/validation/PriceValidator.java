@@ -9,7 +9,7 @@ public class PriceValidator implements Validator {
        validateCorrectPrice(input);
     }
 
-    void validateInteger(String value) throws IllegalArgumentException {
+    private void validateInteger(String value) throws IllegalArgumentException {
         boolean isDigit = value.chars()
                 .allMatch(Character::isDigit);
         if(!isDigit){
@@ -17,14 +17,14 @@ public class PriceValidator implements Validator {
         }
     }
 
-    void validateBlank(String value) throws IllegalArgumentException {
+    private void validateBlank(String value) throws IllegalArgumentException {
         final String BLANK = "";
         if(BLANK.equals(value.trim())){
             Validator.throwError("구입 금액이 없습니다");
         }
     }
 
-    void validateCorrectPrice(String value) throws IllegalArgumentException {
+    private void validateCorrectPrice(String value) throws IllegalArgumentException {
         if(Integer.parseInt(value) % 1000 != 0){
             Validator.throwError("로또의 개수가 정수가 아닙니다");
         }

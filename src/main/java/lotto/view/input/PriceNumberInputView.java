@@ -22,7 +22,7 @@ public class PriceNumberInputView {
         return price;
     }
 
-    public boolean handleInputPriceValidation(String price){
+    private boolean handleInputPriceValidation(String price){
         try{
             priceValidator.validate(price);
             return true;

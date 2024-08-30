@@ -21,7 +21,7 @@ public class WinningNumberInputView {
         return winningNumber;
     }
 
-    public boolean handleInputWinningNumberValidation(String winningNumber){
+    private boolean handleInputWinningNumberValidation(String winningNumber){
         try{
             winningNumberValidator.validate(winningNumber);
             return true;
