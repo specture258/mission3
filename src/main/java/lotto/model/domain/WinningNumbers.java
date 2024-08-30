@@ -23,7 +23,7 @@ public class WinningNumbers {
         return winningNumber;
     }
 
-    public void stringToIntegerList(String input) {
+    private void stringToIntegerList(String input) {
         int[] array = Arrays.stream(input.split(","))
                 .mapToInt(Integer::parseInt).toArray();
 
