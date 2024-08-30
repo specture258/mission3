@@ -24,7 +24,7 @@ public class BonusNumberValidator implements Validator {
     }
 
     private void validateRange(String value) throws IllegalArgumentException{
-        if(!value.matches("[1-45]+")){
+        if(Integer.parseInt(value) < 1 || Integer.parseInt(value) > 45){
             Validator.throwError("보너스 번호는 1부터 45 사이의 숫자여야 합니다.");
         }
     }
