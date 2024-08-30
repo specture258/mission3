@@ -4,12 +4,13 @@ public class PriceValidator implements Validator {
 
     @Override
     public boolean validate(String input) {
-        validateInteger(input);
-        validateBlank(input);
-        return true;
+       validateInteger(input);
+       validateBlank(input);
+       validateCorrectPrice(input);
+       return true;
     }
 
-    void validateInteger(String value){
+    void validateInteger(String value) throws IllegalArgumentException {
         boolean isDigit = value.chars()
                 .allMatch(Character::isDigit);
         if(!isDigit){
@@ -17,10 +18,16 @@ public class PriceValidator implements Validator {
         }
     }
 
-    void validateBlank(String value){
+    void validateBlank(String value) throws IllegalArgumentException {
         final String BLANK = "";
         if(BLANK.equals(value.trim())){
             Validator.throwError("구입 금액이 없습니다");
+        }
+    }
+
+    void validateCorrectPrice(String value) throws IllegalArgumentException {
+        if(Integer.parseInt(value) % 1000 != 0){
+            lotto.model.Validator.throwError("로또의 개수가 정수가 아닙니다");
         }
     }
 
