@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class WinningNumbers {
-    List<Integer> winningNumber = new ArrayList<>();
+    List<Integer> winningNumberList = new ArrayList<>();
 
     private final WinningNumberInputView winningNumberInputView;
 
@@ -17,18 +17,21 @@ public class WinningNumbers {
 
     }
 
-    public List<Integer> createWinningNumber(){
+    public void createWinningNumber(){
         String input = winningNumberInputView.inputWinningNumber();
         stringToIntegerList(input);
-        return winningNumber;
     }
 
     private void stringToIntegerList(String input) {
         int[] array = Arrays.stream(input.split(","))
                 .mapToInt(Integer::parseInt).toArray();
 
-        winningNumber = Arrays.stream(array)
+        winningNumberList = Arrays.stream(array)
                 .boxed()
                 .collect(Collectors.toList());
+    }
+
+    public List<Integer> getWinningNumberList() {
+        return winningNumberList;
     }
 }
