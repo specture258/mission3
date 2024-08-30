@@ -4,8 +4,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import static java.util.Collections.sort;
-
 public class Lotto {
     private final List<Integer> numbers;
 
@@ -15,9 +13,17 @@ public class Lotto {
     }
 
     private void validate(List<Integer> numbers) {
+        validateLottoSize(numbers);
+        validateDuplicateLotto(numbers);
+    }
+
+    private void validateLottoSize(List<Integer> numbers) {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+    }
+
+    private void validateDuplicateLotto(List<Integer> numbers) {
         Set<Integer> numberSet = new HashSet<>(numbers);
         if(numberSet.size() != numbers.size()) {
             throw new IllegalArgumentException();
