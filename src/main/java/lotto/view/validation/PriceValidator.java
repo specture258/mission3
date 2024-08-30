@@ -4,9 +4,16 @@ public class PriceValidator implements Validator {
 
     @Override
     public void validate(String input) {
-       validateInteger(input);
-       validateBlank(input);
-       validateCorrectPrice(input);
+        validateBlank(input);
+        validateInteger(input);
+        validateCorrectPrice(input);
+    }
+
+    private void validateBlank(String value) throws IllegalArgumentException {
+        final String BLANK = "";
+        if(BLANK.equals(value.trim())){
+            Validator.throwError("구입 금액이 없습니다");
+        }
     }
 
     private void validateInteger(String value) throws IllegalArgumentException {
@@ -14,13 +21,6 @@ public class PriceValidator implements Validator {
                 .allMatch(Character::isDigit);
         if(!isDigit){
             Validator.throwError("구입 금액이 숫자가 아닙니다");
-        }
-    }
-
-    private void validateBlank(String value) throws IllegalArgumentException {
-        final String BLANK = "";
-        if(BLANK.equals(value.trim())){
-            Validator.throwError("구입 금액이 없습니다");
         }
     }
 
