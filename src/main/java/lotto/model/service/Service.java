@@ -15,8 +15,6 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import static java.util.Collections.sort;
-
 public class Service {
 
     List<Lotto> lotteries = new ArrayList<>();
@@ -42,10 +40,10 @@ public class Service {
     public List<Lotto> createLotteries(){
         for(int i = 0; i < getCount(); i++){
             lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
-            List<Integer> sorted = lottoNumbers.stream()
+            List<Integer> sortedLotto = lottoNumbers.stream()
                     .sorted()
                     .toList();
-            Lotto lotto = new Lotto(sorted);
+            Lotto lotto = new Lotto(sortedLotto);
             lotteries.add(lotto);
         }
         return lotteries;
@@ -136,6 +134,5 @@ public class Service {
     public String getProfit(){
         BigDecimal bigDecimal = BigDecimal.valueOf((double) createProfit() / 8000 * 100);
         return bigDecimal.toPlainString();
-
     }
 }
