@@ -1,6 +1,6 @@
-package lotto.model;
+package lotto.model.domain;
 
-import lotto.view.WinningNumberInputView;
+import lotto.view.input.WinningNumberInputView;
 
 import java.util.ArrayList;
 import java.util.Arrays;

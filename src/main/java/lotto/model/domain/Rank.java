@@ -1,4 +1,4 @@
-package lotto.model;
+package lotto.model.domain;
 
 public enum Rank {
     FIFTH(5_000),

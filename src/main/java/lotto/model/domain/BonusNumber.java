@@ -1,6 +1,6 @@
-package lotto.model;
+package lotto.model.domain;
 
-import lotto.view.BonusNumberInputView;
+import lotto.view.input.BonusNumberInputView;
 
 public class BonusNumber {
 

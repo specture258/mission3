@@ -1,6 +1,6 @@
-package lotto.model;
+package lotto.model.domain;
 
-import lotto.view.PriceNumberInputView;
+import lotto.view.input.PriceNumberInputView;
 
 public class Price {
 

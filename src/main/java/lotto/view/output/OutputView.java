@@ -1,10 +1,7 @@
-package lotto.view;
+package lotto.view.output;
 
-import lotto.model.Lotto;
-import lotto.model.Rank;
-import lotto.model.Service;
-
-import java.util.Arrays;
+import lotto.model.domain.Lotto;
+import lotto.model.service.Service;
 
 public class OutputView {
     public void viewPrice(){

@@ -1,20 +1,19 @@
-package lotto.model;
+package lotto.model.service;
 
 import camp.nextstep.edu.missionutils.Randoms;
-import lotto.view.BonusNumberInputView;
-import lotto.view.PriceNumberInputView;
-import lotto.view.WinningNumberInputView;
+import lotto.model.domain.*;
+import lotto.view.input.BonusNumberInputView;
+import lotto.view.input.PriceNumberInputView;
+import lotto.view.input.WinningNumberInputView;
 import lotto.view.validation.BonusNumberValidator;
 import lotto.view.validation.PriceValidator;
 import lotto.view.validation.WinningNumbersValidator;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import static java.util.Collections.sort;
 

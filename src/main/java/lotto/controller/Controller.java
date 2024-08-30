@@ -1,10 +1,9 @@
 package lotto.controller;
 
-import lotto.model.Lotto;
-import lotto.model.Service;
-import lotto.view.OutputView;
+import lotto.model.domain.Lotto;
+import lotto.model.service.Service;
+import lotto.view.output.OutputView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
