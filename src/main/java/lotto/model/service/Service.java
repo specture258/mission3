@@ -21,7 +21,7 @@ public class Service {
     List<Integer> lottoNumbers = new ArrayList<>();
     List<Integer> temp = new ArrayList<>();
     int[] correspondCount = new int[5];
-    Long profit = 0L;
+
 
     public final WinningNumbers winningNumbers = new WinningNumbers(new WinningNumberInputView(new WinningNumbersValidator()));
     public final BonusNumber bonusNumber = new BonusNumber(new BonusNumberInputView(new BonusNumberValidator()));
@@ -120,9 +120,10 @@ public class Service {
     }
 
     public long createProfit(){
-        int cnt =0 ;
-        Rank[] values = Rank.values();
+        long profit = 0L;
+        int cnt =0;
 
+        Rank[] values = Rank.values();
         for(Rank rank : values){
             profit += (long) rank.getMoney() * correspondCount[cnt++];
         }
@@ -130,7 +131,7 @@ public class Service {
     }
 
     public String getProfit(){
-        BigDecimal bigDecimal = BigDecimal.valueOf((double) createProfit() / 8000 * 100);
+        BigDecimal bigDecimal = BigDecimal.valueOf((double) createProfit() / price.getPrice() * 100);
         return bigDecimal.toPlainString();
     }
 }
