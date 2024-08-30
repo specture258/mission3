@@ -2,10 +2,9 @@ package lotto.view.validation;
 
 public class BonusNumberValidator implements Validator {
     @Override
-    public boolean validate(String input) {
+    public void validate(String input) {
         validateInteger(input);
         validateBlank(input);
-        return true;
     }
 
     void validateInteger(String value) throws IllegalArgumentException{

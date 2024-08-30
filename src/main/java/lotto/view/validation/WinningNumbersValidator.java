@@ -1,17 +1,14 @@
 package lotto.view.validation;
 
-import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class WinningNumbersValidator implements Validator {
     @Override
-    public boolean validate(String input) {
+    public void validate(String input) {
         List<String> inputList = StringtoList(input);
         validateSize(inputList);
         validateInteger(inputList);
         validateRange(inputList);
-        return true;
     }
 
     List<String> StringtoList(String value) {

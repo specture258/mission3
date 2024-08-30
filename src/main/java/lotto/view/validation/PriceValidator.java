@@ -3,11 +3,10 @@ package lotto.view.validation;
 public class PriceValidator implements Validator {
 
     @Override
-    public boolean validate(String input) {
+    public void validate(String input) {
        validateInteger(input);
        validateBlank(input);
        validateCorrectPrice(input);
-       return true;
     }
 
     void validateInteger(String value) throws IllegalArgumentException {
