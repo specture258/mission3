@@ -1,6 +1,13 @@
 package lotto.model;
 
+import camp.nextstep.edu.missionutils.Randoms;
+
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+
+import static java.util.Collections.sort;
 
 public class Lotto {
     private final List<Integer> numbers;
@@ -14,7 +21,13 @@ public class Lotto {
         if (numbers.size() != 6) {
             throw new IllegalArgumentException();
         }
+        Set<Integer> numberSet = new HashSet<>(numbers);
+        if(numberSet.size() != numbers.size()) {
+            throw new IllegalArgumentException();
+        }
     }
 
-    // TODO: 추가 기능 구현
+    public List<Integer> lottoList() {
+        return numbers;
+    }
 }
