@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 public class Service {
 
     List<Lotto> lotteries = new ArrayList<>();
-    int[] correspondCount = new int[5];
+    int[] correspondCount = new int[6];
 
     public final WinningNumbers winningNumbers = new WinningNumbers(new WinningNumberInputView(new WinningNumbersValidator()));
     public final BonusNumber bonusNumber = new BonusNumber(new BonusNumberInputView(new BonusNumberValidator()));
@@ -57,7 +57,7 @@ public class Service {
         }
     }
 
-    public boolean handleDuplicateBonusNumberValidation(int bonusNumber, List<Integer> list){
+    private boolean handleDuplicateBonusNumberValidation(int bonusNumber, List<Integer> list){
         try{
             duplicateBonusNumberValidator(bonusNumber, list);
             return true;
@@ -67,7 +67,7 @@ public class Service {
         }
     }
 
-    public void duplicateBonusNumberValidator(int bonusNumber, List<Integer> list){
+    private void duplicateBonusNumberValidator(int bonusNumber, List<Integer> list){
         boolean same = list.stream()
                 .anyMatch(i -> i == bonusNumber);
         if(same){
@@ -80,45 +80,41 @@ public class Service {
         int bN = bonusNumber.getNumber();
         for(int i = 0; i < getLottoCount(); i++){
             Lotto lotto = lotteries.get(i);
-            Set<Integer> integerList = lotto.getNumbers().stream()
+            Set<Integer> intersectionNumberSet = lotto.getNumbers().stream()
                     .filter(wN::contains)
                     .collect(Collectors.toSet());
-            int size = integerList.size();
-            if(size==5){
-                if(lotto.getNumbers().contains(bN)){
-                    //2등
-                    correspondCount[3]++;
-                }
-                else{
-                    //3등
-                    correspondCount[2]++;
-                }
-            }
-            else{
-                if(size == 3){
-                    //5동
-                    correspondCount[0]++;
-                }
-                else if(size == 4){
-                    //4동
-                    correspondCount[1]++;
-                }
-                else if(size == 6){
-                    //1등
-                    correspondCount[4]++;
-                }
-            }
+            int size = intersectionNumberSet.size();
+            int rank = checkCorrespondence(size, lotto, bN);
+            correspondCount[rank]++;
         }
+    }
 
+    private int checkCorrespondence(int size, Lotto lotto, int bN) {
+        if(size == 5){
+            if(lotto.getNumbers().contains(bN)){
+                return Rank.SECOND.getCount();
+            }
+            return Rank.THIRD.getCount();
+        }
+        if(size == 3){
+            return Rank.FIFTH.getCount();
+        }
+        if(size == 4){
+            return Rank.FOURTH.getCount();
+        }
+        if(size == 6){
+            return Rank.FIRST.getCount();
+        }
+        return 0;
     }
 
     public int[] getCorrespondCount() {
         return correspondCount;
     }
 
-    public long createProfit(){
+    private long createProfit(){
         long profit = 0L;
-        int cnt =0;
+        int cnt = 1;
 
         Rank[] values = Rank.values();
         for(Rank rank : values){
