@@ -25,7 +25,7 @@ public class Service {
     public final Price price = new Price(new PriceNumberInputView(new PriceValidator()));
 
     public int getLottoCount(){
-        return price.getPrice() / 1000;
+        return price.getPrice() / Constants.ONE_LOTTO_PRICE;
     }
 
     public void getLotto(){
@@ -35,7 +35,7 @@ public class Service {
     public List<Lotto> createLotteries(){
         List<Integer> lottoNumbers;
         for(int i = 0; i < getLottoCount(); i++){
-            lottoNumbers = Randoms.pickUniqueNumbersInRange(1, 45, 6);
+            lottoNumbers = Randoms.pickUniqueNumbersInRange(Constants.MIN_LOTTO_NUMBER, Constants.MAX_LOTTO_NUMBER, Constants.LOTTO_NUMBER_COUNT);
             List<Integer> sortedLotto = lottoNumbers.stream()
                     .sorted()
                     .toList();
@@ -90,16 +90,16 @@ public class Service {
     }
 
     private int checkCorrespondence(int size, Lotto lotto, int bN) {
-        if(size == 3){
+        if(size == Constants.MATCH_WITH_THREE){
             return Rank.FIFTH.getCount();
         }
-        if(size == 4){
+        if(size == Constants.MATCH_WITH_FOUR){
             return Rank.FOURTH.getCount();
         }
-        if(size == 5){
+        if(size == Constants.MATCH_WITH_FIVE){
             return decideSecond(lotto, bN);
         }
-        if(size == 6){
+        if(size == Constants.MATCH_WITH_SIX){
             return Rank.FIRST.getCount();
         }
         return 0;
