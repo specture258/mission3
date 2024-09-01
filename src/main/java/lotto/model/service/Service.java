@@ -90,22 +90,26 @@ public class Service {
     }
 
     private int checkCorrespondence(int size, Lotto lotto, int bN) {
-        if(size == 5){
-            if(lotto.getNumbers().contains(bN)){
-                return Rank.SECOND.getCount();
-            }
-            return Rank.THIRD.getCount();
-        }
         if(size == 3){
             return Rank.FIFTH.getCount();
         }
         if(size == 4){
             return Rank.FOURTH.getCount();
         }
+        if(size == 5){
+            return decideSecond(lotto, bN);
+        }
         if(size == 6){
             return Rank.FIRST.getCount();
         }
         return 0;
+    }
+
+    private int decideSecond(Lotto lotto, int bN) {
+        if(lotto.getNumbers().contains(bN)){
+            return Rank.SECOND.getCount();
+        }
+        return Rank.THIRD.getCount();
     }
 
     public int[] getCorrespondCount() {
