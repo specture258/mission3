@@ -51,7 +51,6 @@ public class Controller {
         outputView.viewSecond(service);
         outputView.viewFirst(service);
         outputView.viewProfit(service);
-
     }
 
 

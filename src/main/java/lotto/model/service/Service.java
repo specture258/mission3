@@ -17,12 +17,12 @@ import java.util.stream.Collectors;
 
 public class Service {
 
-    List<Lotto> lotteries = new ArrayList<>();
-    int[] correspondCount = new int[6];
+    private final List<Lotto> lotteries = new ArrayList<>();
+    private final int[] correspondCount = new int[6];
 
-    public final WinningNumbers winningNumbers = new WinningNumbers(new WinningNumberInputView(new WinningNumbersValidator()));
-    public final BonusNumber bonusNumber = new BonusNumber(new BonusNumberInputView(new BonusNumberValidator()));
-    public final Price price = new Price(new PriceNumberInputView(new PriceValidator()));
+    private final WinningNumbers winningNumbers = new WinningNumbers(new WinningNumberInputView(new WinningNumbersValidator()));
+    private final BonusNumber bonusNumber = new BonusNumber(new BonusNumberInputView(new BonusNumberValidator()));
+    private final Price price = new Price(new PriceNumberInputView(new PriceValidator()));
 
     public int getLottoCount(){
         return price.getPrice() / Constants.ONE_LOTTO_PRICE;
