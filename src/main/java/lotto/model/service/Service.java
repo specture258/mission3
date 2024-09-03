@@ -76,15 +76,15 @@ public class Service {
     }
 
     public void correspondWithLotto(){
-        List<Integer> wN = winningNumbers.getWinningNumberList();
-        int bN = bonusNumber.getNumber();
+        List<Integer> tempWinningNumberList = winningNumbers.getWinningNumberList();
+        int tempBonusNumber = bonusNumber.getNumber();
         for(int i = 0; i < getLottoCount(); i++){
             Lotto lotto = lotteries.get(i);
             Set<Integer> intersectionNumberSet = lotto.getNumbers().stream()
-                    .filter(wN::contains)
+                    .filter(tempWinningNumberList::contains)
                     .collect(Collectors.toSet());
             int size = intersectionNumberSet.size();
-            int rank = checkCorrespondence(size, lotto, bN);
+            int rank = checkCorrespondence(size, lotto, tempBonusNumber);
             correspondCount[rank]++;
         }
     }
